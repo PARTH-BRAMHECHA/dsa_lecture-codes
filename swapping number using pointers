@@ -1,0 +1,23 @@
+// this is a code to do swapping using pointers
+#include <iostream>
+using namespace std;
+
+//prototyping function swap
+void swap(int* n1,int* n2);
+
+int main() {
+    int a,b;//declaration of two numbers; 
+    cout<<"Enter two numbers"<<endl;
+    cin>>a>>b;//taking inputs
+  
+    cout<<"Before:\n"<<" a= "<<a<<endl<<" b= "<<b<<endl;
+    swap(&a,&b);//calling function swap passing pointers
+    cout<<"After:\n"<<" a= "<<a<<endl<<" b= "<<b<<endl;
+    return 0;
+}
+
+void swap(int* n1,int* n2){
+    int temp=*n2;
+    *n2=*n1;
+    *n1=temp;
+}
