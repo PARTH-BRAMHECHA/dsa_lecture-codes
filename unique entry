@@ -1,0 +1,46 @@
+//to take unique inputs in an array
+#include <iostream>
+using namespace std;
+
+int add(int a[],int size,int num)
+{
+    for(int i=0;i<10;i++)
+    {
+        if(a[i]==num)
+            return 0;
+
+    }
+    return 1;
+}
+
+int main() {
+    int arr[25], num, n=1;
+    arr[9]=0;
+  
+      while(n && arr[9]==0)
+    {
+            cout << "Please enter the number to appended "<<endl;
+            cin>>num;
+        if(num>99 && num<=999){
+            if(add(arr,25,num)){
+                arr[n-1]=num;
+                n++;
+            }
+            else
+            {
+                cout<<"Entry already present"<<endl;
+            }
+        }
+        
+        else{
+            cout<<"Wrong input"<<endl;
+        }
+    }
+    
+    for(int i=0;i<=9;i++)
+    {
+        cout<<"The members of the array are:";
+        cout<<arr[i]<<endl;
+    }
+    return 0;
+}
