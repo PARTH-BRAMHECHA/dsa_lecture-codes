@@ -1,0 +1,24 @@
+//This is a code in C++ to implement linear search
+//The benefit of this code is that it can work on nonsorted data
+//The worst case time complexity is O(N)
+//The best case time complexity is O(1)
+//The average case time complexity is O(N)
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int key;
+    cout<<"Enter a key to be searched"<<endl;
+    cin>>key;
+    int array[]={1,2,3,4,5,6};
+    for(int i=0;i<6;i++)
+    {
+        if(key==array[i])
+        {
+            cout<<key<<" found";
+            break;
+        }
+    }
+}
