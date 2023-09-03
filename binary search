@@ -1,0 +1,39 @@
+//This is a code in C++ to implement binary search
+//The drawback is that this algorithm is designed to work on sorted array only
+//The worst case time complexity is O(logN)
+//The best case time complexity is O(1)
+//The average case time complexity is O(logN)
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int key;
+    cout<<"Enter a key to be searched"<<endl;
+    cin>>key;
+    int array[]={1,2,3,4,5,6};
+    int low=0,high=5;
+    int flag=1;
+    while(high>low)
+    {
+        int mid=(low+high)/2;
+        
+        if(array[mid]==key){
+            cout<<key<<" found";
+            flag=0;
+            break;
+        }
+        
+        else{
+            if(array[mid]>key)
+                high=mid;
+            else
+                low=mid;
+        }
+    }
+    if(flag)
+    {
+        cout<<"Match not found";
+    }
+}
