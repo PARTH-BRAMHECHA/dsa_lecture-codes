@@ -1,1 +1,138 @@
+#include<iostream>
+using namespace std;
+
+struct node {
+    int data;
+    struct node* next;
+};
+
+class linked_list {
+private:
+    struct node* head; // Remove the initialization here
+public:
+    linked_list() { // Constructor to initialize head to NULL
+        head = NULL;
+    }
+    void insert_at_tail(int);
+    void insert_at_head(int);
+    void insert_after(int,int);
+    void del_at_head();
+    void del_spe(int);
+    void del_at_tail();
+    void display();
+};
+
+void linked_list::insert_at_head(int no) {
+    struct node* newNode = new node; // Create a new node
+    newNode->data = no;
+    newNode->next = head;
+    head=newNode;
+}
+
+void linked_list::insert_after(int no,int temp) {
+    struct node* newNode = new node; // Create a new node
+    struct node* p=head;
+    int flag=0;
+    while(p!=NULL){
+        if(p->data==temp){
+            flag=1;
+            break;
+        }
+    }    
+    if(flag){
+        newNode->data = no;
+        newNode->next = p->next;
+        p->next=newNode;}
+    else
+        cout<<"Number not found after which to be entered";
+}
+
+void linked_list::insert_at_tail(int no) {
+    struct node* newNode = new node; // Create a new node
+    newNode->data = no;
+    newNode->next = NULL;
+
+    if (head == NULL) { // If the list is empty, make the new node the head
+        head = newNode;
+    }
+    else {
+        struct node* p = head;
+        while (p->next != NULL) {
+            p = p->next;
+        }
+        p->next = newNode; // Add the new node to the end of the list
+    }
+}
+
+void linked_list::del_at_head(){
+    struct node* p=head;
+    struct node* q=p->next;
+    free(p);
+    head=q;
+}
+
+void linked_list::del_spe(int no){
+    struct node* p=head;
+    struct node* q=p;
+    int flag=1;
+    while(p!=NULL){
+        if(p->data==no){
+            q->next=p->next;
+            free(p);
+            flag=0;
+            break;
+        }
+            q=p;
+            p=p->next;
+    }
+    if(flag)
+        cout<<"No such member found in the list";
+}
+
+void linked_list::del_at_tail(){
+    struct node* p=head;
+    struct node* q=p;
+    while(p!=NULL){
+        if(p->next==NULL)
+            break;
+        q=p;
+        p=p->next;
+    }
+    free(p);
+    q->next=NULL;
+}
+
+
+void linked_list::display() {
+    struct node* p = head;
+    while (p != NULL) {
+        cout << p->data << " ";
+        p = p->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    linked_list ll;
+    ll.insert_at_tail(3);
+    ll.insert_at_tail(4);
+    ll.insert_at_tail(5);
+    ll.display(); // Output should be: 3 4
+    ll.insert_at_head(2);
+    cout<<endl;
+    ll.display();
+    ll.insert_after(1,2);
+    cout<<endl;
+    ll.display();
+    ll.del_at_head();
+    cout<<endl;
+    ll.display();
+    ll.del_at_tail();
+    cout<<endl;
+    ll.display();
+    ll.del_spe(3);
+    cout<<endl;
+    ll.display();
+    return 0;
+}
 
