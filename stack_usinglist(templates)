@@ -1,0 +1,61 @@
+//implement stack using linked list and use template
+#include <iostream>
+
+using namespace std;
+template <class t>          //declaring template class
+struct node{                //declaring node of linked list
+    t data;
+    struct node<t>* next;
+};
+
+template <class t>
+class stack_ll{
+    private:struct node<t>* head=NULL;
+    public:void add_athead(t);
+           void remove_athead();
+           void peep();
+};
+
+template <class t>          //declaring the function add_athead to add the data at head
+void stack_ll<t>::add_athead(t no)
+{
+    struct node<t>* p=new node<t>;
+    p->data=no;
+    p->next=head;
+    head=p;
+}
+
+template <class t>          //declaring the function remove_athead to remove the data at head
+void stack_ll<t>::remove_athead(){
+    struct node<t>* p=head;
+    if(p==NULL)
+        cout<<"The stack is empty";
+    else{
+        struct node<t>* q=p->next;
+        delete(p);
+        head=q;
+    }    
+}
+
+template <class t>      //declaring the function peep to look the top of the function
+void stack_ll<t>::peep(){
+    struct node<t>* p=head;
+    if(p==NULL)
+        cout<<"empty stack";
+    else
+        cout<<p->data<<endl;
+}
+//driver method
+int main()
+{   stack_ll<int> s0; //creating a object to handle integer inputs
+    s0.add_athead(1); //adding 1 to stack
+    s0.peep();        //looking at the stack
+    s0.add_athead(2); //adding 2 to stack
+    s0.peep();        //looking at the stack
+    stack_ll<char> s1;//creating a object to handle character inputs
+    s1.add_athead('a');//adding a in stack
+    s1.peep();         //looking at the stack    
+    s1.remove_athead();//removing the element from the stack
+    s1.peep();         //looking at the stack
+    return 0;
+}
