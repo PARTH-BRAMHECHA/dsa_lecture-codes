@@ -1,0 +1,51 @@
+//implement stack using linked list
+#include <iostream>
+
+using namespace std;
+struct node{
+    int data;
+    struct node* next;
+};
+class stack_ll{
+    private:struct node* head=NULL;
+    public:void add_athead(int);
+           void remove_athead();
+           void display();
+};
+void stack_ll::add_athead(int no)
+{
+    struct node* p=new node;
+    p->data=no;
+    p->next=head;
+    head=p;
+}
+void stack_ll::remove_athead(){
+    struct node* p=head;
+    if(p==NULL)
+        cout<<"The stack is empty";
+    else{
+        struct node* q=p->next;
+        free(p);
+        head=q;
+    }    
+}
+
+void stack_ll::display(){
+    struct node* p=head;
+    if(p==NULL)
+        cout<<"empty stack";
+    while(p!=NULL)
+    {
+        cout<<p->data<<" ";
+        p=p->next;
+    }
+    cout<<endl;
+}
+int main()
+{   stack_ll s;
+    s.add_athead(1);
+    s.display();
+    s.remove_athead();
+    s.display();
+    return 0;
+}
